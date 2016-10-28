@@ -1,7 +1,6 @@
 import jamendo
 import argparse
 import json
-import requests
 import os
 import errno
 
@@ -26,8 +25,9 @@ def download(id, url):
     else:
         print(" - downloading")
         with open(fname, "wb") as fp:
-            r = requests.get(url)
-            fp.write(r.content)
+            r = jamendo.session.get(url, stream=True)
+            for chunk in r.iter_content(chunk_size=1024*1024):
+                fp.write(chunk)
         print (" - done")
 
 

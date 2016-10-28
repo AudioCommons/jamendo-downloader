@@ -1,4 +1,12 @@
 import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+
+ret = Retry(total=10, backoff_factor=0.2)
+adaptor = HTTPAdapter(max_retries=ret)
+session = requests.Session()
+session.mount('http://', adaptor)
+session.mount('https://', adaptor)
 
 class Jamendo:
 
@@ -12,7 +20,7 @@ class Jamendo:
         host = "https://api.jamendo.com/v3.0"
         url = host + segment
 
-        r = requests.get(url, params=params)
+        r = session.get(url, params=params)
         r.raise_for_status()
         return r.json()
 
