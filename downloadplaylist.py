@@ -16,8 +16,8 @@ def mkdir_p(path):
 FILE_DIR = "audio"
 
 def download(id, url):
-    subdir = id % 100
-    thedir = os.path.join(FILE_DIR, str(subdir))
+    subdir = "%02d" % (id % 100)
+    thedir = os.path.join(FILE_DIR, subdir)
     mkdir_p(thedir)
     fname = os.path.join(thedir, "%s.flac" % id)
     if os.path.exists(fname):
