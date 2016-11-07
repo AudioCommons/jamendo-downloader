@@ -24,6 +24,11 @@ class Jamendo:
         r.raise_for_status()
         return r.json()
 
+    def get_tracks(self, include, prolicensing, order, limit, offset):
+        return self.do_query("/tracks", {"include": include, "prolicensing": prolicensing,
+                                         "order": order, "limit": limit, "offset": offset,
+                                         "audiodlformat": "flac"})
+
     def get_playlist(self, playlistid):
         limit = 200
         offset = 0
