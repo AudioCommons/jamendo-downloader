@@ -8,8 +8,17 @@ available tracks, of which we are using a subset of about 80,000.
 
 ## Setup
 
+This code uses python 3. Make sure to use a python3 virtual environment
+(`virtualenv -p python3.4 ve`) or use `python3`/`pip3`.
+
+Install dependencies with
+
+    $ pip -r requirements
+
 To configure, copy `config.py.dist` to `config.py` and fill in your
 jamendo api key.
+
+
 
 ## Usage
 
